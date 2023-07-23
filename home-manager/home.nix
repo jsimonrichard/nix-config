@@ -88,11 +88,6 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
-  
-    # 1password
-    _1password
-    _1password-gui
-    git-credential-1password
 
     pavucontrol
     gparted
@@ -118,11 +113,13 @@
   };
 
 
-  # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git = {
     enable = true;
+    userName = "J. Simon Richard";
+    userEmail = "jsimonrichard@gmail.com";
   };
+  programs.ssh.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
