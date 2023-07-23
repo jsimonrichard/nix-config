@@ -1,16 +1,23 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ config, pkgs, lib, ... }: {
-  # # You can import other home-manager modules here
-  # imports = [
-  #   # If you want to use home-manager modules from other flakes (such as nix-colors):
-  #   # inputs.nix-colors.homeManagerModule
-  #   inputs.hyprland.homeManagerModules
+{ pkgs, lib, inputs, ... }: {
 
-  #   # You can also split up your configuration and import pieces of it here:
-  #   # ./nvim.nix
-  # ];
+  # You can import other home-manager modules here
+  imports = [
+    # If you want to use home-manager modules from other flakes (such as nix-colors):
+    # inputs.nix-colors.homeManagerModule
+
+    # You can also split up your configuration and import pieces of it here:
+    ./desktop
+    ./programs
+    inputs.hyprland.homeManagerModules.default
+  ];
+
+  home.sessionVariables = {
+    TERMINAL = "${pkgs.kitty}/bin/kitty";
+    EDITOR = "${pkgs.neovim}/bin/nvim";
+  };
 
   home = {
     username = "jsimonrichard";
@@ -20,12 +27,6 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    oh-my-zsh
-    zsh-powerlevel10k
-    kitty
-
-    pavucontrol
-
     neofetch
 
     # archives
@@ -61,6 +62,7 @@
     gawk
     zstd
     gnupg
+    wev
 
     # nix related
     #
@@ -86,6 +88,14 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+  
+    # 1password
+    _1password
+    _1password-gui
+    git-credential-1password
+
+    pavucontrol
+    gparted
   ];
 
   # starship - an customizable prompt for any shell
@@ -100,26 +110,6 @@
     };
   };
 
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "python" "man" ];
-    };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = lib.cleanSource ./p10k-config;
-        file = "p10k.zsh";
-      }
-    ];
-  };
-
   programs.neovim = {
     enable = true;
     extraConfig = ''
@@ -127,51 +117,11 @@
     '';
   };
 
-  programs.vscode = {
-    enable = true;
-
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-      ms-python.python
-      ms-azuretools.vscode-docker
-      ms-vscode-remote.remote-ssh
-      vscodevim.vim
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "remote-ssh-edit";
-        publisher = "ms-vscode-remote";
-        version = "0.47.2";
-        sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-      }
-    ];
-
-    userSettings = {
-      "editor.formatOnSave" = true;
-      "editor.fontSize" = 14;
-      "editor.lineHeight" = 24;
-      "editor.fontFamily" = "MesloLGS NF, monospace";
-      "editor.fontLigatures" = true;
-      "editor.tabSize" = 2;
-      "editor.rulers" = [80 100];
-      "breadcrumbs.enabled" = true;
-      "git.autofetch" = true;
-      "terminal.integrated.fontFamily" = "MesloLGS NF";
-      "window.zoomLevel" = 0;
-      "window.menuBarVisibility" = "toggle";
-    };
-  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git = {
     enable = true;
-    userName = "J. Simon Richard";
-    userEmail = "jsimonrichard@gmail.com";
-  };
-
-  programs.kitty = {
-    enable = true;
-    # font = pkgs.meslo-lgs-nf;
   };
 
   # Nicely reload system units when changing configs

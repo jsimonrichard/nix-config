@@ -9,7 +9,7 @@
     # inputs.hardware.nixosModules.common-ssd
 
     # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
+    ./greetd-tuigreet.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -18,6 +18,7 @@
   nixpkgs = {
     # You can add overlays here
     overlays = [
+      # (_: _: { home-manager = inputs.home-manager.defaultPackage.x86_64-linux; })
       # If you want to use overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -127,11 +128,6 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -141,17 +137,53 @@
   
   environment.systemPackages = with pkgs; [
     tmux
-    brave
     kitty
     git
     brightnessctl
     pipewire
     zsh
+    polkit_gnome
   ];
 
   fonts.fonts = with pkgs; [
     meslo-lgs-nf
   ];
+
+  security.polkit = {
+    enable = true;
+    extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (
+          subject.isInGroup("users")
+            && (
+              action.id == "org.freedesktop.login1.reboot" ||
+              action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+              action.id == "org.freedesktop.login1.power-off" ||
+              action.id == "org.freedesktop.login1.power-off-multiple-sessions" ||
+            )
+          )
+        {
+          return polkit.Result.YES;
+        }
+      })
+    '';
+  };
+  
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+    };
+  };
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -165,6 +197,18 @@
   environment.shells = with pkgs; [ zsh ];
 
   programs.zsh.enable = true;
+
+  nix.settings = {
+    builders-use-substitutes = true;
+    # substituters to use
+    substituters = [
+      "https://anyrun.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+    ];
+};
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
