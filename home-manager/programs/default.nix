@@ -24,5 +24,9 @@
     # Bible app
     sword
     xiphos 
+  
+    # Dev things
+    postgresql
+    typeshare
   ];
 }

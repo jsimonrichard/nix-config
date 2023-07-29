@@ -9,6 +9,7 @@
       ms-vscode-remote.remote-ssh
       vscodevim.vim
       github.copilot
+      rust-lang.rust-analyzer
       # christian-kohler.path-intellisense
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
@@ -35,6 +36,7 @@
       "editor.rulers" = [80 100];
       "breadcrumbs.enabled" = true;
       "git.autofetch" = true;
+      "git.confirmSync" = false;
       "terminal.integrated.fontFamily" = "MesloLGS NF";
       "window.menuBarVisibility" = "toggle";
       "terminal.integrated.defaultProfile.linux" = "zsh";

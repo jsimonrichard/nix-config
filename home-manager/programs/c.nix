@@ -1,6 +1,8 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    gnat
+    gcc
+    binutils
     gnumake
+    pkgconfig
   ];
 }
