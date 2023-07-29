@@ -3,7 +3,9 @@ let
   inherit (home.sessionVariables) TERMINAL BROWSER EDITOR;
 in
 ''
-exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = ${pkgs.hyprpaper}/bin/hyprpaper >/home/jsimonrichard/hyprpaper.log 2>&1
+exec-once = ${pkgs.eww-wayland}/bin/eww daemon >/home/jsimonrichard/eww.log 2>&1
 
 env = XCURSOR_SIZE,24
 
@@ -30,7 +32,7 @@ general {
     gaps_in = 5
     gaps_out = 15
     border_size = 2
-    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+    col.active_border = rgba(7aa2f7ee) rgba(bb9af7ee) 45deg
     col.inactive_border = rgba(595959aa)
 
     layout = dwindle
@@ -41,9 +43,10 @@ decoration {
 
     rounding = 5
     blur = yes
-    blur_size = 3
-    blur_passes = 1
+    blur_size = 8
+    blur_passes = 2
     blur_new_optimizations = on
+    blur_xray = true
 
     drop_shadow = yes
     shadow_range = 4
@@ -79,6 +82,11 @@ master {
 
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    workspace_swipe = off
+    workspace_swipe = yes
+    workspace_swipe_cancel_ratio = 0.3
+}
+
+misc {
+    focus_on_activate = true
 }
 ''

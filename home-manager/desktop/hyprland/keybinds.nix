@@ -11,7 +11,7 @@ bind = $mainMod, Q, killactive,
 bind = SUPERCONTROLSHIFT, Q, exit,
 bind = $mainMod, W, exec, ${BROWSER}
 bind = $mainMod, V, togglefloating, 
-bindr = SUPER, Super_L, exec, ${LAUNCHER} | xargs hyprctl dispatch -- exec
+bindr = SUPER, Super_L, exec, hyprctl dispatch -- "exec $(${LAUNCHER}) >/home/jsimonrichard/tofi.log 2>&1"
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l
@@ -50,4 +50,16 @@ bind = $mainMod, mouse_up, workspace, e+1
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
+
+# Brightness
+bind = ,XF86MonBrightnessDown, exec, brightnessctl s 5%-
+bind = ,XF86MonBrightnessUp, exec, brightnessctl s +5%
+
+# Volume
+bind = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-
+bind = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+
+bind = ,XF86AudioMute , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bind = CTRL, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%-
+bind = CTRL, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%+
+bind = CTRL, XF86AudioMute , exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 ''

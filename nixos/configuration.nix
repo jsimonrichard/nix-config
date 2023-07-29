@@ -18,6 +18,7 @@
   nixpkgs = {
     # You can add overlays here
     overlays = [
+      inputs.rust-overlay.overlays.default 
       # (_: _: { home-manager = inputs.home-manager.defaultPackage.x86_64-linux; })
       # If you want to use overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -143,6 +144,7 @@
     pipewire
     zsh
     polkit_gnome
+    findutils
   ];
 
   fonts.fonts = with pkgs; [
@@ -194,7 +196,19 @@
     jack.enable = true;
   };
 
+  services.locate = {
+    enable = true;
+  };
+
+  # Printing
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  services.avahi.openFirewall = true;
+
   environment.shells = with pkgs; [ zsh ];
+  
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.zsh.enable = true;
 
@@ -208,7 +222,9 @@
     trusted-public-keys = [
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
-};
+  };
+
+  networking.firewall.allowedTCPPorts = [ 57621 ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";

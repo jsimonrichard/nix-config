@@ -1,8 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
-  home.packages = with pkgs; [
-    dunst
-    hyprpaper
-  ];
+  # home.packages = with pkgs; [
+  # ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -14,6 +12,11 @@
       }) +
       import ./keybinds.nix {
         inherit (config) home;
+        inherit pkgs;
+      }) +
+      (import ./window-rules.nix {
+      }) +
+      (import ./autostart.nix {
         inherit pkgs;
       }) +
       (import ./config.nix {

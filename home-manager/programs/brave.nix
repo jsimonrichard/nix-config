@@ -7,6 +7,7 @@
       { id = "cppjkneekbjaeellbfkmgnhonkkjfpdn"; } # Clear cache
       { id = "fmkadmapgofadopljbjfkapdkoienihi"; } # React Dev Tools
       { id = "ekhagklcjbdpajgpjgmbionohlpdbjgc"; } # Zotero Connector
+      { id = "chlffgpmiacpedhhbkiomidkjlcfhogd"; } # Pushbullet
     ];
   };
 

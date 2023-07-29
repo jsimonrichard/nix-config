@@ -3,7 +3,7 @@
     tofi
   ];
 
-  home.sessionVariables.LAUNCHER = "${pkgs.tofi}/bin/tofi-drun";
+  home.sessionVariables.LAUNCHER = "${pkgs.tofi}/bin/tofi-run";
 
   xdg.configFile."tofi/config".text = ''
     anchor = top

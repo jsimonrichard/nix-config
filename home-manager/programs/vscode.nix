@@ -8,13 +8,20 @@
       ms-azuretools.vscode-docker
       ms-vscode-remote.remote-ssh
       vscodevim.vim
-      # eww-yuck.yuck
+      github.copilot
+      # christian-kohler.path-intellisense
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "remote-ssh-edit";
         publisher = "ms-vscode-remote";
         version = "0.47.2";
         sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+      }
+      {
+        name = "tokyo-night";
+        publisher = "enkia";
+        version = "1.0.0";
+        sha256 = "sha256-/fM+aUDUzVJ6P38i+GrxhLv2eLJNa8OFkKsM4yPBy4c=";
       }
     ];
 
@@ -32,6 +39,7 @@
       "window.menuBarVisibility" = "toggle";
       "terminal.integrated.defaultProfile.linux" = "zsh";
       "window.zoomLevel" = 1;
+      "workbench.colorTheme" = "Tokyo Night";
     };
   };
 }
