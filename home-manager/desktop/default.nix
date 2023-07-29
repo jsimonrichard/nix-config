@@ -8,4 +8,9 @@
     ./gtk.nix
     ./gnome.nix
   ];
+
+  home.packages = with pkgs; [
+    grim
+    slurp
+  ];
 }

@@ -10,7 +10,8 @@ bind = $mainMod, T, exec, ${TERMINAL}
 bind = $mainMod, Q, killactive,
 bind = SUPERCONTROLSHIFT, Q, exit,
 bind = $mainMod, W, exec, ${BROWSER}
-bind = $mainMod, V, togglefloating, 
+bind = $mainMod, V, togglefloating,
+bind = $mainMod, S, exec, grim -g "$(slurp)" >/home/jsimonrichard/grim.log 2>&1
 bindr = SUPER, Super_L, exec, hyprctl dispatch -- "exec $(${LAUNCHER}) >/home/jsimonrichard/tofi.log 2>&1"
 
 # Move focus with mainMod + arrow keys
