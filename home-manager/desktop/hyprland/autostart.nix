@@ -4,6 +4,7 @@ windowrule = workspace 2 silent, brave
 
 exec-once = obsidian
 exec-once = brave
+exec-once = 1password --silent
 
 exec-once = ${pkgs.writeScriptBin "clear-window-rules.sh" ''
 sleep 10
