@@ -15,15 +15,15 @@
     ./discord.nix
     ./node.nix
     ./c.nix
+    ./ranger
   ];
 
   home.packages = with pkgs; [
     foliate
-    ranger
 
     # Bible app
     sword
-    xiphos 
+    xiphos
   
     # Dev things
     postgresql

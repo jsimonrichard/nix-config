@@ -63,6 +63,8 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
+    imagemagick
   ];
 
   programs.nix-index = {
