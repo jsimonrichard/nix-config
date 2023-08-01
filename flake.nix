@@ -7,14 +7,12 @@
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Add any other flake you might need
     nixos-hardware.url = "github:nixos/nixos-hardware";
-
-    hyprland.url = "github:hyprwm/Hyprland";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 

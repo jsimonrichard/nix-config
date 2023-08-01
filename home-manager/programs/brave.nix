@@ -11,5 +11,5 @@
     ];
   };
 
-  home.sessionVariables.BROWSER = "${pkgs.brave}/bin/brave";
+  wayland.windowManager.hyprland.settings.bind = ["$mod, W, exec, ${pkgs.brave}/bin/brave"];
 }

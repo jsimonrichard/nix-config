@@ -7,10 +7,6 @@
     ./dunst.nix
     ./gtk.nix
     ./gnome.nix
-  ];
-
-  home.packages = with pkgs; [
-    grim
-    slurp
+    ./screenshot.nix
   ];
 }

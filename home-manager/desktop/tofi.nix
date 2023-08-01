@@ -3,7 +3,7 @@
     tofi
   ];
 
-  home.sessionVariables.LAUNCHER = "${pkgs.tofi}/bin/tofi-run";
+  home.sessionVariables.LAUNCHER = "${pkgs.tofi}/bin/tofi-run --hint-font false --ascii-input true --font '${pkgs.meslo-lgs-nf}/share/fonts/truetype/MesloLGS NF Regular.ttf'";
 
   xdg.configFile."tofi/config".text = ''
     width = 100%
@@ -18,5 +18,15 @@
     background-color = #1a1b26aa
     text-color = #c0caf5
     selection-color = #7aa2f7
+  '';
+
+  wayland.windowManager.hyprland.extraConfig = ''
+    bind = SUPER, Super_L, exec, hyprctl dispatch -- exec $(${"
+      ${pkgs.tofi}/bin/tofi-run
+          --hint-font false
+          --ascii-input true
+          --font '${pkgs.meslo-lgs-nf}/share/fonts/truetype/MesloLGS NF Regular.ttf'
+    "})
+    layerrule = noanim, launcher
   '';
 }

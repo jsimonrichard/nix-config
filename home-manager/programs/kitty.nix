@@ -15,4 +15,6 @@
     '';
     theme = "Tokyo Night";
   };
+
+  wayland.windowManager.hyprland.settings.bind = ["$mod, Return, exec, ${pkgs.kitty}/bin/kitty"];
 }
