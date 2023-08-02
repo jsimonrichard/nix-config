@@ -1,14 +1,14 @@
 { ... }: {
-  wayland.windowManager.hyprland.extraConfig = ''
-    windowrule = float, ^(.blueman-manager-wrapped)$
-    windowrule = size 660,420, ^(.blueman-manager-wrapped)$
+  wayland.windowManager.hyprland.settings.windowrule = [
+    "float, ^(.blueman-manager-wrapped)$"
+    "size 660,420, ^(.blueman-manager-wrapped)$"
 
-    windowrule = float, ^(Spotify)$
-    windowrule = float, title:zoom
+    "float, ^(Spotify)$"
+    "float, title:zoom"
 
-    windowrule = float, title:^(Open Folder)
-    windowrule = size 960,775, title:^(Open Folder)
+    "float, title:^(Open Folder)"
+    "size 960,775, title:^(Open Folder)"
 
-    windowrule = float, 1Password
-  '';
+    "float, 1Password"
+  ];
 }

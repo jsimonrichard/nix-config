@@ -28,5 +28,7 @@
     # Dev things
     postgresql
     typeshare
+
+    zathura
   ];
 }

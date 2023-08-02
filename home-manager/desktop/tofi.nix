@@ -3,8 +3,6 @@
     tofi
   ];
 
-  home.sessionVariables.LAUNCHER = "${pkgs.tofi}/bin/tofi-run --hint-font false --ascii-input true --font '${pkgs.meslo-lgs-nf}/share/fonts/truetype/MesloLGS NF Regular.ttf'";
-
   xdg.configFile."tofi/config".text = ''
     width = 100%
     height = 100%
@@ -21,7 +19,7 @@
   '';
 
   wayland.windowManager.hyprland.extraConfig = ''
-    bind = SUPER, Super_L, exec, hyprctl dispatch -- exec $(${"
+    bindr = SUPER, Super_L, exec, hyprctl dispatch -- exec $(${builtins.replaceStrings ["\n"] [""] "
       ${pkgs.tofi}/bin/tofi-run
           --hint-font false
           --ascii-input true

@@ -8,89 +8,83 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-#     extraConfig = ''
-#       env = XCURSOR_SIZE,24
+    settings = {
+      env = [ "XCURSOR_SIZE, 24" ];
+        
+      # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+      input = {
+        kb_layout = "us";
+        follow_mouse = 1;
+        touchpad = {
+            natural_scroll = "yes";
+        };
+        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+      };
 
-#       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
-#       input {
-#           kb_layout = us
-#           kb_variant =
-#           kb_model =
-#           kb_options =
-#           kb_rules =
+      general = {
+        # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        gaps_in = 5;
+        gaps_out = 15;
+        border_size = 2;
+        "col.active_border" = "rgba(7aa2f7ee) rgba(bb9af7ee) 45deg";
+        "col.inactive_border" = "rgba(595959aa)";
 
-#           follow_mouse = 1
+        layout = "dwindle";
+      };
 
-#           touchpad {
-#               natural_scroll = yes
-#           }
+      decoration = {
+        # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-#           sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-#       }
+        rounding = 5;
+        blur = "yes";
+        blur_size = 8;
+        blur_passes = 2;
+        blur_new_optimizations = "on";
+        blur_xray = true;
 
-#       general {
-#           # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        drop_shadow = "yes";
+        shadow_range = 4;
+        shadow_render_power = 3;
+        "col.shadow" = "rgba(1a1a1aee)";
+      };
 
-#           gaps_in = 5
-#           gaps_out = 15
-#           border_size = 2
-#           col.active_border = rgba(7aa2f7ee) rgba(bb9af7ee) 45deg
-#           col.inactive_border = rgba(595959aa)
+      animations = {
+          enabled = "yes";
 
-#           layout = dwindle
-#       }
+          # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
-#       decoration {
-#           # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-#           rounding = 5
-#           blur = yes
-#           blur_size = 8
-#           blur_passes = 2
-#           blur_new_optimizations = on
-#           blur_xray = true
+          animation = [
+            "windows, 1, 7, myBezier"
+            "windowsOut, 1, 7, default, popin 80%"
+            "border, 1, 10, default"
+            "borderangle, 1, 8, default"
+            "fade, 1, 7, default"
+            "workspaces, 1, 6, default"
+          ];
+      };
 
-#           drop_shadow = yes
-#           shadow_range = 4
-#           shadow_render_power = 3
-#           col.shadow = rgba(1a1a1aee)
-#       }
+      dwindle = {
+          # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+          pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+          preserve_split = "yes"; # you probably want this
+      };
 
-#       animations {
-#           enabled = yes
+      master = {
+          # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+          new_is_master = true;
+      };
 
-#           # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+      gestures = {
+          # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          workspace_swipe = "yes";
+          workspace_swipe_cancel_ratio = 0.3;
+      };
 
-#           bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-
-#           animation = windows, 1, 7, myBezier
-#           animation = windowsOut, 1, 7, default, popin 80%
-#           animation = border, 1, 10, default
-#           animation = borderangle, 1, 8, default
-#           animation = fade, 1, 7, default
-#           animation = workspaces, 1, 6, default
-#       }
-
-#       dwindle {
-#           # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-#           pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-#           preserve_split = yes # you probably want this
-#       }
-
-#       master {
-#           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-#           new_is_master = true
-#       }
-
-#       gestures {
-#           # See https://wiki.hyprland.org/Configuring/Variables/ for more
-#           workspace_swipe = yes
-#           workspace_swipe_cancel_ratio = 0.3
-#       }
-
-#       misc {
-#           focus_on_activate = true
-#       }
-#     '';
+      misc = {
+          focus_on_activate = true;
+      };
+    };
   };
 }

@@ -1,6 +1,6 @@
 { ... }: {
-  wayland.windowManager.hyprland.extraConfig = ''
-    monitor=eDP-1,1920x1200,auto,1
-    monitor=,preferred,auto,auto
-  '';
+  wayland.windowManager.hyprland.settings.monitor = [
+    "eDP-1,1920x1200,auto,1"
+    ",preferred,auto,auto"
+  ];
 }
