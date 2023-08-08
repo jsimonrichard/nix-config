@@ -10,5 +10,7 @@
     "size 960,775, title:^(Open Folder)"
 
     "float, 1Password"
+
+    "float, title:^(ranger)$"
   ];
 }
