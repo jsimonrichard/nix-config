@@ -1,0 +1,108 @@
+$white: #c0caf5;
+$blue: rgb(122, 162, 247);
+$magenta: rgb(187, 154, 247);
+$orange: rgb(255, 158, 100);
+$yellow: rgb(224, 175, 104);
+$red: rgb(255, 117, 127);
+$green: rgb(158, 206, 106);
+$cyan: rgb(125, 207, 225);
+$black: #1a1b26;
+
+* {
+  font-family: 'Inter';
+  font-size: 12pt;
+  color: $white;
+}
+
+.bar,
+.calendar_window,
+.sys_window {
+  border-radius: 10px;
+  background-color: rgba($black, 0.4);
+}
+
+.calendar_window,
+.sys_window {
+  border: 2px solid $blue;
+}
+
+.spacer {
+  opacity: 0.5;
+}
+
+.clock_module_button {
+  border-radius: 0%;
+  background-color: inherit;
+  padding: 0px 10px;
+
+  .time {
+    color: $blue;
+    font-weight: bold;
+  }
+}
+
+.clock_time {
+  font-size: 12pt;
+  color: $blue;
+  font-weight: bold;
+}
+
+button {
+  padding: 5px;
+}
+
+.sys_stat {
+  border-radius: 0px;
+  background-color: inherit;
+  transition: all 0.3s;
+  // all: unset;
+  // padding: 5px;
+}
+
+circular-progress {
+  margin-left: 5px;
+}
+
+.battery {
+  color: $blue;
+  background-color: rgba($blue, 0.3);
+}
+
+.memory {
+  color: $green;
+  background-color: rgba($green, 0.3);
+}
+
+.cpu {
+  color: $red;
+  background-color: rgba($red, 0.3);
+}
+
+.calendar_window {
+  .time {
+    color: $blue;
+    font-weight: bold;
+    font-size: 48px;
+    border-top: 1px solid rgba($white, 0.5);
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .calendar_wrapper {
+    calendar.view {
+      background-color: rgba(0.0, 0.0, 0.0, 0.0);
+      border: none;
+    }
+  }
+}
+
+.sys_window {
+  .sys_window_wrapper {
+    padding: 10px;
+  }
+
+  .performance_label {
+    font-weight: bold;
+    padding: 5px;
+  }
+}

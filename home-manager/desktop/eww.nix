@@ -5,7 +5,12 @@
     package = pkgs.eww-wayland;
   };
 
-  wayland.windowManager.hyprland.extraConfig = ''
-    exec-once = ${pkgs.eww-wayland}/bin/eww daemon >/home/jsimonrichard/eww.log 2>&1
-  '';
+  wayland.windowManager.hyprland.settings = {
+    "exec-once" = [
+      "${pkgs.eww-wayland}/bin/eww daemon >/home/jsimonrichard/eww.log 2>&1"
+    ];
+    layerrule = [
+      "blur, gtk-layer-shell"
+    ];
+  };
 }

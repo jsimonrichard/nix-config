@@ -1,12 +1,146 @@
-(defwindow example
+(defvar is_calendar_open false)
+
+(defwidget clock_module []
+  (button :class "clock_module_button" :onclick "${EWW_CMD} update is_calendar_open=${!is_calendar_open} && ${EWW_CMD} ${is_calendar_open ? "close" : "open"} calendar_window"
+    (box :class "clock_module" :space-evenly "false" :orientation "h" :spacing 15
+      (label :text {formattime(EWW_TIME, "%a")} :class "weekday")
+      (label :text "|" :class "spacer")
+      (label :text {formattime(EWW_TIME, "%R")} :class "time")
+      (label :text "|" :class "spacer")
+      (label :text "${formattime(EWW_TIME, '%m')} / ${formattime(EWW_TIME, '%d')}" :class "date")
+    )
+  )
+)
+
+(defwindow calendar_window
            :monitor 0
-           :geometry (geometry :x "0%"
-                               :y "20px"
-                               :width "90%"
-                               :height "30px"
+           :geometry (geometry :y "3px"
+                               :width "300px"
+                               :height "300px"
                                :anchor "top center")
            :stacking "fg"
-           :reserve (struts :distance "40px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-  "example content")
+           :class "window"
+  (box :orientation "v" :class "calendar_wrapper" :space-evenly false
+    (calendar)
+    (label :text {formattime(EWW_TIME, '%T')} :class "time")
+  )
+)
+
+(defvar is_sys_open false)
+
+(defwidget sys_stat [] 
+  (button 
+    :onclick "${EWW_CMD} update is_sys_open=${!is_sys_open} && ${EWW_CMD} ${is_sys_open ? "close" : "open"} sys_window"
+    :tooltip "CPU: %, Memory: ${round(EWW_RAM.used_mem_perc, 1)}%, Battery: ${EWW_BATTERY.BAT0.capacity}%"
+    :class "sys_stat"
+    (box :orientation "h"
+      (circular-progress
+        :value {EWW_CPU.avg}
+        :thickness 6
+        :width 35
+        :start-at 75
+        :class "cpu"
+      )
+      (circular-progress
+        :value {EWW_RAM.used_mem_perc}
+        :thickness 6
+        :height: 20
+        :width 35
+        :height: 35
+        :start-at 75
+        :class "memory"
+      )
+      (circular-progress
+        :value {EWW_BATTERY.BAT0.capacity}
+        :thickness 6
+        :width 35
+        :height 20
+        :start-at 75
+        :class "battery"
+      )
+    )
+  )
+)
+
+(defwindow sys_window
+           :monitor 0
+           :geometry (geometry
+                               :x "3px"
+                               :y "3px"
+                               :anchor "top right")
+           :stacking "fg"
+  (box :orientation "h" :class "sys_window_wrapper" :spacing 10
+    (box :orientation "v" :space-evenly false
+      (circular-progress
+        :value {EWW_CPU.avg}
+        :thickness 15
+        :start-at 75
+        :width 100
+        :height 100
+        :class "cpu"
+      )
+      (label :text "CPU" :class "performance_label")
+      (label :text "${round(EWW_CPU.avg, 1)}%")
+    )
+    (box :orientation "v" :space-evenly false
+      (circular-progress
+        :value {EWW_RAM.used_mem_perc}
+        :thickness 15
+        :start-at 75
+        :width 100
+        :height 100
+        :class "memory"
+      )
+      (label :text "Memory" :class "performance_label")
+      (label :text "${round(EWW_RAM.used_mem_perc, 1)}%")
+    )
+    (box :orientation "v" :space-evenly false
+      (circular-progress
+        :value {EWW_BATTERY.BAT0.capacity}
+        :thickness 15
+        :start-at 75
+        :width 100
+        :height 100
+        :class "battery"
+      )
+      (label :text "CPU" :class "performance_label")
+      (label :text "${EWW_BATTERY.BAT0.capacity}%")
+    )
+  )
+)
+
+
+(defwidget left []
+	(box :orientation "h" 
+		 :class "left_modules"
+))
+
+(defwidget right []
+	(box :orientation "h"
+         :halign "end"
+		 :class "right_modules"
+  (sys_stat)
+))
+
+
+(defwidget center []
+	(box :orientation "h"
+		 :class "center_modules"
+  (clock_module)
+))
+
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0%"
+                               :width "100%"
+                               :height "25px"
+                               :anchor "top center")
+           :stacking "fg"
+           :exclusive true
+  (centerbox :orientation "h"
+    (left)
+    (center)
+    (right)
+  )
+)

@@ -37,10 +37,10 @@
 
         rounding = 5;
         blur = "yes";
-        blur_size = 8;
+        blur_size = 4;
         blur_passes = 2;
         blur_new_optimizations = "on";
-        blur_xray = true;
+        # blur_xray = true;
 
         drop_shadow = "yes";
         shadow_range = 4;
