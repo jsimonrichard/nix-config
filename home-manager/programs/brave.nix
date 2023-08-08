@@ -8,6 +8,7 @@
       { id = "fmkadmapgofadopljbjfkapdkoienihi"; } # React Dev Tools
       { id = "ekhagklcjbdpajgpjgmbionohlpdbjgc"; } # Zotero Connector
       { id = "chlffgpmiacpedhhbkiomidkjlcfhogd"; } # Pushbullet
+      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark reader
     ];
   };
 
