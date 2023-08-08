@@ -102,7 +102,7 @@
         :height 100
         :class "battery"
       )
-      (label :text "CPU" :class "performance_label")
+      (label :text "Battery" :class "performance_label")
       (label :text "${EWW_BATTERY.BAT0.capacity}%")
     )
   )
