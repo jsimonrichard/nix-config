@@ -67,20 +67,25 @@
 
       device = "nodev";
       efiSupport = true;
+      useOSProber = true;
 
-      extraEntries = ''
-        menuentry 'Arch Linux' {
-          set gfxpayload=keep
-          insmod gzio
-          insmod part_gpt
-          insmod fat
-          search --no-floppy --fs-uuid --set=root 503C-F84E
-          echo 'Loading linux...'
-          linux /vmlinuz-linux root=UUID=9088a6d5-2dbc-4dc6-ba32-fbe6fb78a9ad rw  loglevel=3 quiet
-          echo 'Loading initial ramdisk...'
-          initrd /initramfs-linux.img
-        }  
+      extraConfig = ''
+      
       '';
+
+      # extraEntries = ''
+      #   menuentry 'Arch Linux' {
+      #     set gfxpayload=keep
+      #     insmod gzio
+      #     insmod part_gpt
+      #     insmod fat
+      #     search --no-floppy --fs-uuid --set=root 503C-F84E
+      #     echo 'Loading linux...'
+      #     linux /vmlinuz-linux root=UUID=9088a6d5-2dbc-4dc6-ba32-fbe6fb78a9ad rw  loglevel=3 quiet
+      #     echo 'Loading initial ramdisk...'
+      #     initrd /initramfs-linux.img
+      #   }  
+      # '';
     };
   };
 
@@ -149,6 +154,7 @@
 
   fonts.packages = with pkgs; [
     meslo-lgs-nf
+    inter
   ];
 
   security.polkit = {
