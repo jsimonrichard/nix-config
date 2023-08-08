@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   imports = [
     ./hyprland
-    ./tofi.nix
+    # ./tofi.nix
+    ./fuzzel.nix
     ./eww.nix
     ./hyprpaper.nix
     ./dunst.nix
