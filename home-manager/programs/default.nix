@@ -30,5 +30,7 @@
     typeshare
 
     zathura
+    wl-clipboard
+    musescore
   ];
 }
