@@ -31,7 +31,6 @@
 (defwidget sys_stat [] 
   (button 
     :onclick "${EWW_CMD} update is_sys_open=${!is_sys_open} && ${EWW_CMD} ${is_sys_open ? "close" : "open"} sys_window"
-    :tooltip "CPU: %, Memory: ${round(EWW_RAM.used_mem_perc, 1)}%, Battery: ${EWW_BATTERY.BAT0.capacity}%"
     :class "sys_stat"
     (box :orientation "h"
       (circular-progress
