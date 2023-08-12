@@ -37,8 +37,8 @@
 
         rounding = 5;
         blur = "yes";
-        blur_size = 4;
-        blur_passes = 2;
+        blur_size = 8;
+        blur_passes = 3;
         blur_new_optimizations = "on";
         # blur_xray = true;
 

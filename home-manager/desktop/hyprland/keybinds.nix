@@ -29,7 +29,6 @@ in
 
     bind = [
       "$mod, Q, killactive,"
-      "$mod CTRL SHIFT, Q, exit,"
       "$mod, V, togglefloating,"
 
       # Scroll through workspaces using $mod + SCROLL
@@ -70,6 +69,11 @@ in
       # Move/resize windows with $mod + LMB/RMB and dragging
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
+    ];
+
+    # Works even if the screen is locked
+    bindl = [
+      "$mod CTRL SHIFT, Q, exit,"
     ];
   };
 }

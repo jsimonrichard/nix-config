@@ -13,7 +13,7 @@
       '';
     in
     [
-      "obsidian"
+      "env -u WAYLAND_DISPLAY obsidian"
       "brave"
       "1password --slient"
       "${clearWindowRules}/bin/clear-window-rules.sh"

@@ -69,23 +69,19 @@
       efiSupport = true;
       useOSProber = true;
 
-      extraConfig = ''
-      
+      extraEntries = ''
+        menuentry 'Arch Linux' {
+          set gfxpayload=keep
+          insmod gzio
+          insmod part_gpt
+          insmod fat
+          search --no-floppy --fs-uuid --set=root 503C-F84E
+          echo 'Loading linux...'
+          linux /vmlinuz-linux root=UUID=9088a6d5-2dbc-4dc6-ba32-fbe6fb78a9ad rw  loglevel=3 quiet
+          echo 'Loading initial ramdisk...'
+          initrd /initramfs-linux.img
+        }  
       '';
-
-      # extraEntries = ''
-      #   menuentry 'Arch Linux' {
-      #     set gfxpayload=keep
-      #     insmod gzio
-      #     insmod part_gpt
-      #     insmod fat
-      #     search --no-floppy --fs-uuid --set=root 503C-F84E
-      #     echo 'Loading linux...'
-      #     linux /vmlinuz-linux root=UUID=9088a6d5-2dbc-4dc6-ba32-fbe6fb78a9ad rw  loglevel=3 quiet
-      #     echo 'Loading initial ramdisk...'
-      #     initrd /initramfs-linux.img
-      #   }  
-      # '';
     };
   };
 
@@ -206,6 +202,8 @@
     enable = true;
   };
 
+  security.pam.services.swaylock = {};
+
   # Printing
   services.printing.enable = true;
   services.avahi.enable = true;
@@ -228,6 +226,12 @@
     trusted-public-keys = [
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
+  };
+
+  nix.gc = {
+    automatic = true;  # Enable the automatic garbage collector
+    dates = "weekly";   # When to run the garbage collector
+    options = "--delete-older-than 30d";    # Arguments to pass to nix-collect-garbage
   };
 
   networking.firewall.allowedTCPPorts = [ 57621 ];

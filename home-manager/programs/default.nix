@@ -16,6 +16,7 @@
     ./node.nix
     ./c.nix
     ./ranger
+    ./zathura.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,7 +30,6 @@
     postgresql
     typeshare
 
-    zathura
     wl-clipboard
     musescore
   ];
