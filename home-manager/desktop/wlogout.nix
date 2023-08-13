@@ -87,6 +87,6 @@
   };
 
   wayland.windowManager.hyprland.settings.bind = [
-    "$mod, L, exec, ${pkgs.wlogout}/bin/wlogout -p layer-shell -c 25 -r 25"
+    "SUPER, L, exec, ${pkgs.wlogout}/bin/wlogout -p layer-shell -c 25 -r 25"
   ];
 }

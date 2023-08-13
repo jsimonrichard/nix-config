@@ -43,5 +43,6 @@
 
   wayland.windowManager.hyprland.settings.bind = [
     ",switch:Lid Switch , exec, ${pkgs.swaylock}/bin/swaylock"
+    "$mod, L, exec, ${pkgs.swaylock}/bin/swaylock"
   ];
 }
