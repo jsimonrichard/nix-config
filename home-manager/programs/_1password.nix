@@ -20,4 +20,8 @@
     };
     commit.gpgsign = true;
   };
+
+  wayland.windowManager.hyprland.settings.windowrule = [
+    "float, 1Password"
+  ];
 }

@@ -1,10 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [ spotify ];
 
-  # xdg.desktopEntries.spotify-test = {
-  #   name = "Spotify Test";
-  #   exec = "${pkgs.spotify}/bin/spotify %U";
-  #   terminal = false;
-  #   categories = [ "Application" "Music" ];
-  # };
+  wayland.windowManager.hyprland.settings.windowrule = [
+    "workspace special:Spotify, title:^(Spotify)$"
+  ];
 }
