@@ -202,6 +202,8 @@
     enable = true;
   };
 
+  # services.gnome.core-utilities.enable = true;
+
   security.pam.services.swaylock = {};
 
   # Printing

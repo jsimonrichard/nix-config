@@ -22,4 +22,7 @@
   };
 
   home.sessionVariables.GTK_THEME = "Tokyonight-Dark-BL";
+
+  # For GNOME / libadwaita apps
+  xdg.configFile."gtk-4.0/gtk.css".source = "${pkgs.tokyo-night-gtk}/share/themes/Tokyonight-Dark-BL/gtk-4.0/gtk.css";
 }

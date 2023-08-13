@@ -2,5 +2,6 @@
   home.packages = with pkgs; [
     gnome.sushi
     gnome.simple-scan
+    gnome.nautilus
   ];
 }
