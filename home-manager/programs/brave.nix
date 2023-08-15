@@ -9,6 +9,7 @@
       { id = "ekhagklcjbdpajgpjgmbionohlpdbjgc"; } # Zotero Connector
       { id = "chlffgpmiacpedhhbkiomidkjlcfhogd"; } # Pushbullet
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark reader
+      # { id = "cbhilkcodigmigfbnphipnnmamjfkipp"; } # Calendly
     ];
   };
 
