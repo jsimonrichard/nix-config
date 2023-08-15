@@ -8,6 +8,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.x86_64-linux.default;
     settings = {
       env = [ "XCURSOR_SIZE, 24" ];
         
@@ -36,11 +37,12 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         rounding = 5;
-        blur = "yes";
-        blur_size = 8;
-        blur_passes = 3;
-        blur_new_optimizations = "on";
-        # blur_xray = true;
+
+        blur = {
+          enabled = true;
+          size = 8;
+          passes = 3;
+        };
 
         drop_shadow = "yes";
         shadow_range = 4;

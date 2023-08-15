@@ -6,6 +6,11 @@
 nixos-rebuild --flake .#hostname
 ```
 
+To update flake inputs:
+```bash
+nix flake lock --update-input <input>
+```
+
 ## Features
 
 - Coming soon...

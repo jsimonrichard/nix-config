@@ -16,6 +16,8 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
     # anyrun = {
     #   url = "github:Kirottu/anyrun";
     #   inputs.nixpkgs.follows = "nixpkgs";
