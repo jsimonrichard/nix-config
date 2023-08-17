@@ -59,6 +59,7 @@
 
   xdg.enable = true;
   xdg.mimeApps.enable = true;
+  xdg.configFile."mimeapps.list".force = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
