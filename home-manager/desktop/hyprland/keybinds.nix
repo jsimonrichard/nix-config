@@ -37,6 +37,7 @@ in
           hyprctl workspaces -j | jq -r '.[] | .name' | grep special | sed 's/special://'
         } | fuzzel -d | sed '1s;^;special:;' | xargs hyprctl dispatch workspace
       ''}"
+      "SUPER, escape, workspace, special:None"
 
       # Scroll through workspaces using $mod + SCROLL
       "$mod, mouse_down, workspace, e-1"
