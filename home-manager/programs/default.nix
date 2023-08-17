@@ -32,5 +32,7 @@
 
     wl-clipboard
     musescore
+
+    evince
   ];
 }
