@@ -4,6 +4,6 @@
     slurp
   ];
   wayland.windowManager.hyprland.settings.bind = [
-    "$mod, S, exec, grim -g '$(slurp)'
-  "];
+    "$mod, S, exec, grim -g \"$(slurp)\""
+  ];
 }
