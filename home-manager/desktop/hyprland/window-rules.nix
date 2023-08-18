@@ -7,7 +7,5 @@
 
     "float, title:^(Open Folder)"
     "size 960,775, title:^(Open Folder)"
-
-    "float, title:^(ranger)$"
   ];
 }
