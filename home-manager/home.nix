@@ -27,7 +27,6 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     pavucontrol
-    gparted
   ];
 
   # starship - an customizable prompt for any shell
