@@ -9,6 +9,9 @@
     shellAliases = {
       snrsf = "sudo nixos-rebuild switch --flake";
     };
+    initExtra = ''
+      [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+    '';
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "python" "man" ];
