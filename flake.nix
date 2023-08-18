@@ -5,23 +5,13 @@
     # Nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Add any other flake you might need
     nixos-hardware.url = "github:nixos/nixos-hardware";
-
     rust-overlay.url = "github:oxalica/rust-overlay";
-
     hyprland.url = "github:hyprwm/Hyprland";
-
-    # anyrun = {
-    #   url = "github:Kirottu/anyrun";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
@@ -40,7 +30,6 @@
         modules = [
           ./nixos/configuration.nix
           nixos-hardware.nixosModules.dell-xps-13-9380
-
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
