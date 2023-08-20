@@ -26,11 +26,6 @@
     };
   };
 
-  programs.tmux = {
-    enable = true;
-    terminal = "tmux-direct";
-  };
-
   # Bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
