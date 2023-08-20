@@ -4,7 +4,6 @@
     ../../users/jsimonrichard
   ];
 
-  # Custom zfs module config
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
@@ -42,8 +41,4 @@
     dates = "weekly";   # When to run the garbage collector
     options = "--delete-older-than 30d";    # Arguments to pass to nix-collect-garbage
   };
-
-  environment.systemPackages = [
-    pkgs._1password
-  ];
 }
