@@ -16,9 +16,7 @@
       sshUnlock = {
         # read sshUnlock.txt file.
         enable = false;
-        authorizedKeys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEO5wNHZQmZ4Xkz08W0COGJy2vdPhMRLlJYdEh9ks48a" # elendil
-        ];
+        authorizedKeys = [];
       };
     };
     networking = {
