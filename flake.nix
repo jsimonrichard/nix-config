@@ -59,6 +59,7 @@
     in {
       nixosConfigurations = {
         elendil = mkHost "elendil" "x86_64-linux";
+        gramr = mkHost "gramr" "x86_64-linux";
       };
     };
 }
