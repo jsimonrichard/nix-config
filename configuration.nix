@@ -69,6 +69,11 @@
     };
   };
 
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+  };
+
   # security = {
   #   doas.enable = true;
   #   sudo.enable = false;
@@ -77,7 +82,6 @@
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       jq # other programs
-      tmux
       findutils
     ;
   };
