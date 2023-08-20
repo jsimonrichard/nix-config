@@ -24,8 +24,9 @@ in {
   };
 
   config = {
-    environment.etc."greetd/environments".text = mkIf config.services.greetd.enable
-      (strings.concatStringsSep "\n" config.services.greetd.environments);
+    environment.etc = mkIf config.services.greetd.enable {
+      "greetd/environments".text = (strings.concatStringsSep "\n" config.services.greetd.environments);
+    };
 
     environment.systemPackages = mkIf config.services.greetd.tuigreet.enable [ pkgs.greetd.tuigreet ];
 

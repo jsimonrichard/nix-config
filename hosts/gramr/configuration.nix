@@ -8,9 +8,9 @@
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
-      bootDevices = [  "..." ];
+      bootDevices = [ "nvme-WDC_WDS100T2B0C-00PXH0_202880802072" ];
       immutable = false;
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
       removableEfi = true;
       kernelParams = [ ];
       sshUnlock = {
@@ -25,7 +25,7 @@
       # read changeHostName.txt file.
       hostName = "gramr";
       timeZone = "America/New_York";
-      hostId = "...";
+      hostId = "84db98b8";
     };
   };
 
@@ -36,7 +36,7 @@
 
   # Bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;;
+  services.blueman.enable = true;
 
   # Garbage collecting
   nix.gc = {
