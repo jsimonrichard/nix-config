@@ -41,4 +41,6 @@
     dates = "weekly";   # When to run the garbage collector
     options = "--delete-older-than 30d";    # Arguments to pass to nix-collect-garbage
   };
+
+  services.logind.lidSwitchExternalPower = "ignore";
 }
