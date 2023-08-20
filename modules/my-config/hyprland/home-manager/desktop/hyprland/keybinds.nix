@@ -24,6 +24,10 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    brightnessctl
+  ];
+
   wayland.windowManager.hyprland.settings = {
     "$mod" = "ALT";
 
