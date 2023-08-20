@@ -1,57 +1,64 @@
 {
-  description = "J. Simon Richard's NixOS configuration";
-
   inputs = {
-    # Nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    rust-overlay.url = "github:oxalica/rust-overlay";
     hyprland.url = "github:hyprwm/Hyprland";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, ... }@inputs: {
-    
-    # checks.x86_64-linux = builtins.getAttr "config.system.build.toplevel" nixosConfigurations.elendil;
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      elendil = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main nixos configuration file <
-        modules = [
-          ./nixos/configuration.nix
-          nixos-hardware.nixosModules.dell-xps-13-9380
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      mkHost = hostName: system:
+        (nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = { inherit inputs; };
+            modules = [
+              # Custom Modules
+              ./modules
 
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.jsimonrichard = import ./home-manager/home.nix;
-          }
-        ];
+              # Global nixos configuration
+              ./configuration.nix
+
+              # Host-specific config, if exist
+              (if (builtins.pathExists
+                ./hosts/${hostName}/configuration.nix) then
+                (import ./hosts/${hostName}/configuration.nix {
+                  inherit inputs;
+                  pkgs = nixpkgs.legacyPackages.${system};
+                })
+              else
+                { })
+
+              # Module 2: entry point
+              {
+                system.configurationRevision = if (self ? rev) then
+                  self.rev
+                else
+                  throw "refuse to build: git tree is dirty";
+                system.stateVersion = "23.05";
+                imports = [
+                  "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
+                  # "${nixpkgs}/nixos/modules/profiles/hardened.nix"
+                  # "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
+                ];
+              }
+
+              # Include Home Manager
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = { inherit inputs; };
+              }
+            ];
+          });
+    in {
+      nixosConfigurations = {
+        elendil = mkHost "elendil" "x86_64-linux";
       };
     };
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    # homeConfigurations = {
-    #   "jsimonrichard@elendil" = home-manager.lib.homeManagerConfiguration {
-    #     pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        
-    #     extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-    #     # > Our main home-manager configuration file <
-    #     modules = [ ./home-manager/home.nix ];
-    #   };
-    # };
-  };
 }

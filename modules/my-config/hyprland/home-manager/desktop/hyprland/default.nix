@@ -51,41 +51,43 @@
       };
 
       animations = {
-          enabled = "yes";
+        enabled = "yes";
 
-          # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
-          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-          animation = [
-            "windows, 1, 7, myBezier"
-            "windowsOut, 1, 7, default, popin 80%"
-            "border, 1, 10, default"
-            "borderangle, 1, 8, default"
-            "fade, 1, 7, default"
-            "workspaces, 1, 6, default"
-          ];
+        animation = [
+          "windows, 1, 7, myBezier"
+          "windowsOut, 1, 7, default, popin 80%"
+          "border, 1, 10, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
+        ];
       };
 
       dwindle = {
-          # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-          pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = "yes"; # you probably want this
+        # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+        pseudotile = "yes"; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        preserve_split = "yes"; # you probably want this
       };
 
       master = {
-          # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-          new_is_master = true;
+        # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+        new_is_master = true;
       };
 
       gestures = {
-          # See https://wiki.hyprland.org/Configuring/Variables/ for more
-          workspace_swipe = "yes";
-          workspace_swipe_cancel_ratio = 0.3;
+        # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        workspace_swipe = "yes";
+        workspace_swipe_cancel_ratio = 0.3;
       };
 
       misc = {
-          focus_on_activate = true;
+        focus_on_activate = true;
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
     };
   };
