@@ -27,11 +27,6 @@
     };
   };
 
-  programs.tmux = {
-    enable = true;
-    terminal = "tmux-direct";
-  };
-
   # Desktop config
   services.greetd = {
     enable = true;
