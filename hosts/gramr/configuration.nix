@@ -37,5 +37,5 @@
     options = "--delete-older-than 30d";    # Arguments to pass to nix-collect-garbage
   };
 
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.lidSwitch = "ignore";
 }
