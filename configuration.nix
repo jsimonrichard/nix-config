@@ -23,10 +23,18 @@
 
   services.openssh = {
     enable = true;
-    settings = { PasswordAuthentication = false; };
+    permitRootLogin = "no";
+    settings.PasswordAuthentication = false;
   };
 
+  security.pam.enableSSHAgentAuth = true;
+  security.pam.services.sudo.sshAgentAuth = true;
+
   boot.zfs.forceImportRoot = false;
+
+  # Enable automatic ZFS snapshots
+  # Also required: zfs set com.sun:auto-snapshot=true <pool>/<fs> 
+  services.zfs.autoSnapshot.enable = true;
 
   nix = {
     # This will add each flake input as a registry

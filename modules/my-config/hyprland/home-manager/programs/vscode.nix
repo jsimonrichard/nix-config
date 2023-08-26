@@ -24,6 +24,12 @@
         version = "1.0.0";
         sha256 = "sha256-/fM+aUDUzVJ6P38i+GrxhLv2eLJNa8OFkKsM4yPBy4c=";
       }
+      {
+        name = "vscode-mdx";
+        publisher = "unifiedjs";
+        version = "1.4.0";
+        sha256 = "sha256-qqqq0QKTR0ZCLdPltsnQh5eTqGOh9fV1OSOZMjj4xXg=";
+      }
     ];
 
     userSettings = {

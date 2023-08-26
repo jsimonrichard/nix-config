@@ -11,6 +11,13 @@ To update flake inputs:
 nix flake lock --update-input <input>
 ```
 
+To install on a new system, follow this guide: https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS.html
+
+Also, to enable automatic snapshots run this command.
+```bash
+zfs set com.sun:auto-snapshot=true <pool>/<fs>
+```
+
 ## Features
 
 - Coming soon...
