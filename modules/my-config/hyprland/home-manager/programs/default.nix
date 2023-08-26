@@ -31,7 +31,7 @@
 
     wl-clipboard
     musescore
-
     evince
+    inkscape
   ];
 }
