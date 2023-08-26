@@ -23,8 +23,12 @@
 
   services.openssh = {
     enable = true;
-    settings = { PasswordAuthentication = false; };
+    permitRootLogin = "no";
+    settings.PasswordAuthentication = false;
   };
+
+  security.pam.enableSSHAgentAuth = true;
+  security.pam.services.sudo.sshAgentAuth = true;
 
   boot.zfs.forceImportRoot = false;
 
