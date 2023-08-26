@@ -10,7 +10,7 @@
       snrsf = "sudo nixos-rebuild switch --flake";
     };
     initExtra = ''
-      [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+      [ "$TERM" = "xterm-kitty" ] && alias sshi="kitty +kitten ssh"
     '';
     oh-my-zsh = {
       enable = true;
