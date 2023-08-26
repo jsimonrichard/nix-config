@@ -11,6 +11,7 @@
 	      IdentityAgent ~/.1password/agent.sock
     '';
   };
+  home.sessionVariables.SSH_AUTH_SOCK = "/home/jsimonrichard/.1password/agent.sock";
 
   programs.git.extraConfig = {
     user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDYoGPQpHYvpxsvrhxZUTBj68fVHCNb6OYAWTsRVOLX5";
