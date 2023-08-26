@@ -28,6 +28,10 @@
 
   boot.zfs.forceImportRoot = false;
 
+  # Enable automatic ZFS snapshots
+  # Also required: zfs set com.sun:auto-snapshot=true <pool>/<fs> 
+  services.zfs.autoSnapshot.enable = true;
+
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
