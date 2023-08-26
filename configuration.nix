@@ -23,8 +23,10 @@
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
-    settings.PasswordAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
   };
 
   security.pam.enableSSHAgentAuth = true;
