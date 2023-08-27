@@ -36,7 +36,10 @@
 
   # Enable automatic ZFS snapshots
   # Also required: zfs set com.sun:auto-snapshot=true <pool>/<fs> 
-  services.zfs.autoSnapshot.enable = true;
+  services.zfs.autoSnapshot = {
+    enable = true;
+    flags = "-k -p --utc";
+  };
 
   nix = {
     # This will add each flake input as a registry
@@ -93,6 +96,7 @@
     inherit (pkgs)
       jq # other programs
       findutils
+      btop
     ;
   };
 
