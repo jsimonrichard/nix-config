@@ -16,6 +16,13 @@
         mouse_right_click = "context";
         dmenu = "${pkgs.fuzzel}/bin/fuzzel --dmenu";
       };
+
+      volume-controls = {
+        appname = "volumeChange";
+        history_ignore="yes";
+        urgency = "low";
+        timeout = "1s";
+      };
     };
   };
 
