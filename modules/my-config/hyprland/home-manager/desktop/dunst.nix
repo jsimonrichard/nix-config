@@ -13,6 +13,8 @@
         frame_color = "#7aa2f733";
         frame_width = 2;
         background = "#1a1b2699";
+        mouse_right_click = "context";
+        dmenu = "${pkgs.fuzzel}/bin/fuzzel --dmenu";
       };
     };
   };
