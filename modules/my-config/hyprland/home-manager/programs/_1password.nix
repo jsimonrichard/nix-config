@@ -1,8 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    _1password
-    _1password-gui
-  ];
+  # Enable programs._1password[-gui] in nixos config
 
   programs.ssh = {
     enable = true;
