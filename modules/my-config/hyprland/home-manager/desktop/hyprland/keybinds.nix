@@ -56,10 +56,9 @@ in
       "$mod, V, togglefloating,"
       "$mod, F, fullscreen, 0"
       "SUPER, S, exec, ${pkgs.writeShellScript "change-special-workspace" ''
-        {
-          echo None
-          hyprctl workspaces -j | jq -r '.[] | .name' | grep special | sed 's/special://'
-        } | fuzzel -d | sed '1s;^;special:;' | xargs hyprctl dispatch workspace
+          hyprctl workspaces -j | jq -r '.[] | .name' | grep special \
+            | sed 's/special://' | fuzzel -d | sed '1s;^;special:;' \
+            | xargs hyprctl dispatch workspace
       ''}"
       "SUPER, escape, workspace, special:None"
 
