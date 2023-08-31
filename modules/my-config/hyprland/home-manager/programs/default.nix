@@ -16,6 +16,7 @@
     ./c.nix
     ./ranger
     ./zathura.nix
+    ./libreoffice.nix
   ];
 
   home.packages = with pkgs; [
