@@ -79,6 +79,11 @@
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
 
+  # Finger print reader
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
   # Garbage collecting
   nix.gc = {
     automatic = true;  # Enable the automatic garbage collector
