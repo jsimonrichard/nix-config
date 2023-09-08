@@ -71,7 +71,7 @@
       #   });
       # })
     ];
-    # Disable if you don't want unfree packages
+
     config.allowUnfree = true;
   };
 
