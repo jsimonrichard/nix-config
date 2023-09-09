@@ -78,6 +78,9 @@
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
+  environment.systemPackages = with pkgs; [
+    system-config-printer
+  ];
 
   # Finger print reader
   # services.fprintd.enable = true;
