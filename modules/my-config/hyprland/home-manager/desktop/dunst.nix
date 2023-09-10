@@ -24,6 +24,11 @@
         timeout = "1s";
       };
 
+      spotify = {
+        appname = "Spotify";
+        format = "";
+      };
+
       z_bedtime = {
         appname = "bedtime";
         history_ignore="yes";
