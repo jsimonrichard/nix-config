@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   services.dunst = {
     enable = true;
     settings = {
@@ -22,6 +22,16 @@
         history_ignore="yes";
         urgency = "low";
         timeout = "1s";
+      };
+
+      z_bedtime = {
+        appname = "bedtime";
+        history_ignore="yes";
+        urgency = "critical";
+        timeout = "60s";
+        background = "#ff757fdd";
+        separator_color = "#ff757fff";
+        frame_color = "#ff757fff";
       };
     };
   };

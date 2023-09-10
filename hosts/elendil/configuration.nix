@@ -2,6 +2,7 @@
   imports = [
     inputs.nixos-hardware.nixosModules.dell-xps-13-9380
     ../../users/jsimonrichard
+    ./bedtime.nix
   ];
 
   # Custom zfs module config
