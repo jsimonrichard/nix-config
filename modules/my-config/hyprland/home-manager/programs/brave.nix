@@ -10,6 +10,7 @@
       { id = "chlffgpmiacpedhhbkiomidkjlcfhogd"; } # Pushbullet
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark reader
       { id = "ecabifbgmdmgdllomnfinbmaellmclnh"; } # Reader view
+      { id = "ekhagklcjbdpajgpjgmbionohlpdbjgc"; } # Zotero Connector
     ];
   };
 

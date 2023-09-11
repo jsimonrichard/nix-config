@@ -34,5 +34,6 @@
     musescore
     evince
     inkscape
+    zotero
   ];
 }
