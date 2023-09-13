@@ -79,14 +79,22 @@
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
+
   environment.systemPackages = with pkgs; [
     system-config-printer
+    vulkan-tools
   ];
 
   # Finger print reader
   services.fprintd.enable = true;
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
   # Garbage collecting
   nix.gc = {
