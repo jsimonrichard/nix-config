@@ -66,6 +66,10 @@ in
       "$mod, mouse_down, workspace, e-1"
       "$mod, mouse_up, workspace, e+1"
 
+      # Tabs
+      "$mod, G, togglegroup,"
+      "$mod, Tab, changegroupactive,"
+
       # Brightness
       ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
       ",XF86MonBrightnessUp, exec, brightnessctl s +5%"
