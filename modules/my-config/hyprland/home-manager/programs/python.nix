@@ -1,6 +1,8 @@
 { pkgs, ... }: let
   pythonPackages = ps: with ps; [
     ipython
+    jupyterlab
+    jupyterlab-git
   ];
 in
 {
