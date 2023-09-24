@@ -17,6 +17,7 @@
     ./ranger
     ./zathura.nix
     ./libreoffice.nix
+    ./zotero.nix
   ];
 
   home.packages = with pkgs; [
@@ -34,6 +35,5 @@
     musescore
     evince
     inkscape
-    zotero
   ];
 }
