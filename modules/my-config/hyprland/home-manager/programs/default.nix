@@ -35,5 +35,7 @@
     musescore
     evince
     inkscape
+
+    texlive.combined.scheme-full
   ];
 }
