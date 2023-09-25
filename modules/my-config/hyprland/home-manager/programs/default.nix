@@ -37,5 +37,6 @@
     inkscape
 
     texlive.combined.scheme-full
+    nodePackages.mermaid-cli
   ];
 }
