@@ -38,5 +38,6 @@
 
     texlive.combined.scheme-full
     nodePackages.mermaid-cli
+    gimp
   ];
 }
