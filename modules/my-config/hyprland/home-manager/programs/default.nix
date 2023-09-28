@@ -40,5 +40,6 @@
     nodePackages.mermaid-cli
     gimp
     blender
+    onedrive
   ];
 }
