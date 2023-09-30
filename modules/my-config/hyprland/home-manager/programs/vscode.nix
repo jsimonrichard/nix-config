@@ -30,6 +30,12 @@
         version = "1.4.0";
         sha256 = "sha256-qqqq0QKTR0ZCLdPltsnQh5eTqGOh9fV1OSOZMjj4xXg=";
       }
+      {
+        name = "tauri-vscode";
+        publisher = "tauri-apps";
+        version = "0.2.6";
+        sha256 = "sha256-O9NxFemUgt9XmhL6BnNArkqbCNtHguSbvVOYwlT0zg4=";
+      }
     ];
 
     userSettings = {
