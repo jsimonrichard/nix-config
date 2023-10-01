@@ -4,4 +4,8 @@
       extensions = ["rust-src"];
     })
   ];
+
+  home.sessionPath = [
+    ".cargo/bin"
+  ];
 }
