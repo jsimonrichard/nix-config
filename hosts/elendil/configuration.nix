@@ -83,6 +83,9 @@
   environment.systemPackages = with pkgs; [
     system-config-printer
     vulkan-tools
+    
+    winetricks
+    wineWowPackages.waylandFull
   ];
 
   # Finger print reader
