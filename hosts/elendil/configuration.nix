@@ -102,7 +102,6 @@
   # VirtualBox
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "jsimonrichard" ];
-  virtualisation.virtualbox.guest.enable = true;
 
   # Garbage collecting
   nix.gc = {
