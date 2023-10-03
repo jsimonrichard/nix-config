@@ -3,6 +3,6 @@
     gcc
     binutils
     gnumake
-    pkgconfig
+    pkg-config
   ];
 }

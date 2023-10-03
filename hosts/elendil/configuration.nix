@@ -86,6 +86,8 @@
     
     winetricks
     wineWowPackages.waylandFull
+
+    jetbrains.rust-rover
   ];
 
   # Finger print reader
