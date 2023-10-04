@@ -7,7 +7,7 @@
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     hyprland.url = "github:hyprwm/Hyprland";
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    # rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

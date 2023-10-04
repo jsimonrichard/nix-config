@@ -10,7 +10,6 @@
     ./python.nix
     ./sage.nix
     ./zoom.nix
-    ./rust.nix
     ./discord.nix
     ./node.nix
     ./c.nix
