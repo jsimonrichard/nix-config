@@ -37,9 +37,10 @@
     inkscape
 
     texlive.combined.scheme-full
-    nodePackages.mermaid-cli
     gimp
     blender
     onedrive
+
+    godot_4
   ];
 }
