@@ -22,4 +22,14 @@
   wayland.windowManager.hyprland.settings.windowrule = [
     "float, 1Password"
   ];
+
+  xdg.desktopEntries._1password-silent = {
+    name = "1Password (Silent)";
+    genericName = "Password Manager";
+    comment = "1Password (Silent startup)";
+    icon = "${pkgs._1password-gui}/share/icons/hicolor/256x256/apps/1password.png";
+    exec = "${pkgs._1password-gui}/bin/1password --silent";
+    terminal = false;
+    categories = [ "Utility" ];
+  };
 }
