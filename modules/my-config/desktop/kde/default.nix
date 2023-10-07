@@ -30,6 +30,10 @@ in {
       konsole
     ];
 
+    environment.systemPackages = with pkgs.libsForQt5; [
+      skanlite
+    ];
+
   }) []);
   #(map (username: {
   #  #home-manager.users."${username}";
