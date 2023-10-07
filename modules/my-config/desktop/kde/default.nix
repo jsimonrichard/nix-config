@@ -34,6 +34,7 @@ in {
       skanlite
       kpeople
       kpeoplevcard
+      plasma-browser-integration
     ];
 
     programs.kdeconnect.enable = true;
