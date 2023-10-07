@@ -32,7 +32,11 @@ in {
 
     environment.systemPackages = with pkgs.libsForQt5; [
       skanlite
+      kpeople
+      kpeoplevcard
     ];
+
+    programs.kdeconnect.enable = true;
 
   }) []);
   #(map (username: {
