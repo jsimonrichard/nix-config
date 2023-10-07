@@ -3,7 +3,8 @@
     ./boot
     ./fileSystems
     ./networking
-    ./my-config/hyprland
+    ./my-config/desktop/hyprland
+    ./my-config/desktop/kde
     ./polkit_gnome.nix
     ./tuigreet.nix
   ];
