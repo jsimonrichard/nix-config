@@ -35,7 +35,7 @@
         publisher = "tauri-apps";
         version = "0.2.6";
         sha256 = "sha256-O9NxFemUgt9XmhL6BnNArkqbCNtHguSbvVOYwlT0zg4=";
-     }
+      }
     ];
 
     userSettings = {
