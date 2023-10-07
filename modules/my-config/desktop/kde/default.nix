@@ -20,7 +20,16 @@ in {
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
     };
+
     programs.dconf.enable = true;
+
+    environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+      elisa
+      oxygen
+      khelpcenter
+      konsole
+    ];
+
   }) []);
   #(map (username: {
   #  #home-manager.users."${username}";
