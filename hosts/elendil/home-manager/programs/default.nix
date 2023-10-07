@@ -41,5 +41,6 @@
     onedrive
 
     godot_4
+    jetbrains.rust-rover
   ];
 }
