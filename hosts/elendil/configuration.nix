@@ -29,23 +29,16 @@
   };
 
   # Desktop config
-  services.greetd = {
+  my-config.desktop.kde = {
     enable = true;
-    tuigreet = {
-      enable = true;
-      defaultCmd = "Hyprland";
-    };
   };
 
-  my-config.desktop.hyprland = {
-    enable = true;
-    users = [ "jsimonrichard" ];
-  };
+  home-manager.users.jsimonrichard = import ./home-manager/home.nix;
 
-  security.polkit = {
-    enable = true;
-    gnome.enable = true;
-  };
+# security.polkit = {
+#   enable = true;
+#   gnome.enable = false;
+# };
 
   fonts.packages = with pkgs; [
     meslo-lgs-nf

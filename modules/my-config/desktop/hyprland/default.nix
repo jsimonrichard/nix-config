@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let inherit (lib) types mkIf mkDefault mkOption lists;
 in {
-  imports = [ ../../tuigreet.nix ];
+  imports = [ ../../../tuigreet.nix ];
 
   options.my-config.desktop.hyprland = {
     enable = mkOption {
