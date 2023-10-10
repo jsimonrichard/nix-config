@@ -31,5 +31,18 @@
       userName = "J. Simon Richard";
       userEmail = "jsimonrichard@gmail.com";
     };
+
+    programs.ssh.matchBlocks = {
+      "Grail" = {
+        host = "grail.eecs.csuohio.edu";
+        user = "jarichar";
+      };
+      "Davinci" = {
+        host = "davinci.eecs.csuohio.edu";
+        user = "jarichar";
+        proxyJump = "grail";
+        # proxyCommand = "ssh -W %h:%p grail";
+      };
+    };
   };
 }
