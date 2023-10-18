@@ -3,5 +3,6 @@
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
+    jdk17
   ];
 }
