@@ -3,6 +3,7 @@
     inputs.nixos-hardware.nixosModules.dell-xps-13-9380
     ../../users/jsimonrichard
     ./bedtime.nix
+    ./rust.nix
   ];
 
   # Custom zfs module config
