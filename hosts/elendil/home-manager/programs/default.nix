@@ -42,5 +42,6 @@
 
     godot_4
     jetbrains.rust-rover
+    zig
   ];
 }
