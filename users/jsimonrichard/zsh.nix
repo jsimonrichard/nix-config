@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, config, ... }: {
   home.packages = with pkgs; [
     oh-my-zsh
     zsh-powerlevel10k
@@ -11,6 +11,8 @@
     };
     initExtra = ''
       [ "$TERM" = "xterm-kitty" ] && alias sshi="kitty +kitten ssh"
+    '' + lib.optionalString (config.home.sessionPath != [ ]) ''
+      export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
     '';
     oh-my-zsh = {
       enable = true;
