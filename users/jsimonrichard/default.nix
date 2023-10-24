@@ -33,15 +33,13 @@
     };
 
     programs.ssh.matchBlocks = {
+      "Gramr" = {
+        host = "gramr.jsimonrichard.com";
+        user = "jsimonrichard";
+      };
       "Grail" = {
         host = "grail.eecs.csuohio.edu";
         user = "jarichar";
-      };
-      "Davinci" = {
-        host = "davinci.eecs.csuohio.edu";
-        user = "jarichar";
-        proxyJump = "grail";
-        # proxyCommand = "ssh -W %h:%p grail";
       };
     };
   };
