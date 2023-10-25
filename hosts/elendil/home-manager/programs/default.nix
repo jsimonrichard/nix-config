@@ -43,5 +43,6 @@
     godot_4
     jetbrains.rust-rover
     zig
+    gnome.simple-scan
   ];
 }
