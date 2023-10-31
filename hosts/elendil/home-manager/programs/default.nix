@@ -44,5 +44,7 @@
     jetbrains.rust-rover
     zig
     gnome.simple-scan
+
+    kicad-small
   ];
 }
