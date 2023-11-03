@@ -46,5 +46,7 @@
     gnome.simple-scan
 
     kicad-small
+
+    ollama
   ];
 }
