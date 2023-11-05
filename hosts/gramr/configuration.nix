@@ -4,6 +4,8 @@
     ../../users/jsimonrichard
   ];
 
+  nixpkgs.config.cudaSupport = true;
+
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
