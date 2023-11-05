@@ -10,8 +10,10 @@
 
     # You can also split up your configuration and import pieces of it here:
     ./desktop
-    ./programs
+    #./programs
   ];
+
+  xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
 
   home.sessionVariables = {
     TERMINAL = "${pkgs.kitty}/bin/kitty";

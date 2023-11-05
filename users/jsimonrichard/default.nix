@@ -31,5 +31,16 @@
       userName = "J. Simon Richard";
       userEmail = "jsimonrichard@gmail.com";
     };
+
+    programs.ssh.matchBlocks = {
+      "Gramr" = {
+        host = "gramr.jsimonrichard.com";
+        user = "jsimonrichard";
+      };
+      "Grail" = {
+        host = "grail.eecs.csuohio.edu";
+        user = "jarichar";
+      };
+    };
   };
 }

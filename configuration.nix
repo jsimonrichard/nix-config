@@ -59,7 +59,7 @@
   nixpkgs = {
     # You can add overlays here
     overlays = [
-      inputs.rust-overlay.overlays.default 
+      # inputs.rust-overlay.overlays.default 
       # (_: _: { home-manager = inputs.home-manager.defaultPackage.x86_64-linux; })
       # If you want to use overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -71,7 +71,7 @@
       #   });
       # })
     ];
-    # Disable if you don't want unfree packages
+
     config.allowUnfree = true;
   };
 

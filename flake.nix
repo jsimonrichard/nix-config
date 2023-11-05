@@ -7,7 +7,7 @@
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     hyprland.url = "github:hyprwm/Hyprland";
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    # rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -28,7 +28,10 @@
                 ./hosts/${hostName}/configuration.nix) then
                 (import ./hosts/${hostName}/configuration.nix {
                   inherit inputs;
-                  pkgs = nixpkgs.legacyPackages.${system};
+                  pkgs = import nixpkgs {
+                    inherit system;
+                    config.allowUnfree = true;
+                  }; #.legacyPackages.${system};
                 })
               else
                 { })

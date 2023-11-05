@@ -2,6 +2,8 @@
   imports = [
     inputs.nixos-hardware.nixosModules.dell-xps-13-9380
     ../../users/jsimonrichard
+    ./bedtime.nix
+    ./rust.nix
   ];
 
   # Custom zfs module config
@@ -28,23 +30,16 @@
   };
 
   # Desktop config
-  services.greetd = {
+  my-config.desktop.kde = {
     enable = true;
-    tuigreet = {
-      enable = true;
-      defaultCmd = "Hyprland";
-    };
   };
 
-  my-config.desktop.hyprland = {
-    enable = true;
-    users = [ "jsimonrichard" ];
-  };
+  home-manager.users.jsimonrichard = import ./home-manager/home.nix;
 
-  security.polkit = {
-    enable = true;
-    gnome.enable = true;
-  };
+# security.polkit = {
+#   enable = true;
+#   gnome.enable = false;
+# };
 
   fonts.packages = with pkgs; [
     meslo-lgs-nf
@@ -53,7 +48,6 @@
 
   # Bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   # Sound
   security.rtkit.enable = true;
@@ -65,6 +59,10 @@
     jack.enable = true;
   };
 
+  # 1Password
+  programs._1password.enable = true;
+  programs._1password-gui.enable = true;
+
   services.locate = {
     enable = true;
   };
@@ -74,6 +72,31 @@
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
+
+  environment.systemPackages = with pkgs; [
+    system-config-printer
+    vulkan-tools
+    
+    winetricks
+    wineWowPackages.waylandFull
+
+    jetbrains.rust-rover
+  ];
+
+  # Finger print reader
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  # VirtualBox
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "jsimonrichard" ];
 
   # Garbage collecting
   nix.gc = {
