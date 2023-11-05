@@ -42,6 +42,6 @@
   services.logind.lidSwitch = "ignore";
 
   home-manager.users.jsimonrichard = {
-    xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
+    xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; cudaSupport = true; }";
   };
 }
