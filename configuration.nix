@@ -97,6 +97,7 @@
       jq # other programs
       findutils
       btop
+      poetry
     ;
   };
 
