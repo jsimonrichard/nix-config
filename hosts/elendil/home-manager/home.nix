@@ -13,8 +13,6 @@
     ./programs
   ];
 
-  xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
-
   home.sessionVariables = {
     TERMINAL = "${pkgs.kitty}/bin/kitty";
     EDITOR = "${pkgs.neovim}/bin/nvim";

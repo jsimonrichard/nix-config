@@ -6,7 +6,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEO5wNHZQmZ4Xkz08W0COGJy2vdPhMRLlJYdEh9ks48a" # elendil
     ];
-    extraGroups = [ "wheel" "networkmanager" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker" ];
     shell = pkgs.zsh;
   };
 
@@ -42,5 +42,12 @@
         user = "jarichar";
       };
     };
+  };
+
+  home-manager.users.jsimonrichard = {
+    xdg.configFile."nixpkgs/config.nix".text = ''{
+      allowUnfree = true;
+      cudaSupport = true;
+    }'';
   };
 }
