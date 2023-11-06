@@ -52,6 +52,7 @@
       "terminal.integrated.fontFamily" = "MesloLGS NF";
       "window.menuBarVisibility" = "toggle";
       "terminal.integrated.defaultProfile.linux" = "zsh";
+      "terminal.integrated.inheritEnv" = true;
       "window.zoomLevel" = 1;
       "workbench.colorTheme" = "Tokyo Night";
     };

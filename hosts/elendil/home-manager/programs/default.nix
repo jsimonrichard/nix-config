@@ -13,6 +13,7 @@
     ./discord.nix
     ./node.nix
     ./c.nix
+    ./rust.nix
     ./ranger
     ./zathura.nix
     ./libreoffice.nix

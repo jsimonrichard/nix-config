@@ -11,9 +11,9 @@
     };
     initExtra = ''
       [ "$TERM" = "xterm-kitty" ] && alias sshi="kitty +kitten ssh"
-    '' + lib.optionalString (config.home.sessionPath != [ ]) ''
-      export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
-    '';
+    ''; #+ lib.optionalString (config.home.sessionPath != [ ]) ''
+    #  export PATH="$PATH''${PATH:+:}${lib.concatStringsSep ":" config.home.sessionPath}"
+    #'';
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "python" "man" ];
