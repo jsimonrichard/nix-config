@@ -18,6 +18,11 @@ Also, to enable automatic snapshots run this command.
 zfs set com.sun:auto-snapshot=true <pool>/<fs>
 ```
 
+To build the installer, run
+```bash
+nix build .#nixosConfigurations.installer.config.system.build.isoImage
+```
+
 ## Features
 
 - Coming soon...

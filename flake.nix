@@ -7,7 +7,6 @@
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     hyprland.url = "github:hyprwm/Hyprland";
-    # rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -64,6 +63,22 @@
         elendil = mkHost "elendil" "x86_64-linux";
         gramr = mkHost "gramr" "x86_64-linux";
         excalibur = mkHost "excalibur" "x86_64-linux";
+
+        installer = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./installer.nix
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            {
+              system.configurationRevision = if (self ? rev) then
+                self.rev
+              else
+                throw "refuse to build: git tree is dirty";
+              system.stateVersion = "23.05";
+            }
+          ];
+        };
       };
     };
 }
