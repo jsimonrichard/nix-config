@@ -10,11 +10,4 @@
   home.sessionPath = [
     "/home/jsimonrichard/.cargo/bin"
   ];
-
-  program.bash.initExtra = ''
-    export PATH=$HOME/.cargo/bin:$PATH
-  '';
-  program.zsh.initExtra = ''
-    export PATH=$HOME/.cargo/bin:$PATH
-  '';
 }

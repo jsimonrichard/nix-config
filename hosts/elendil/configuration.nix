@@ -3,43 +3,36 @@
     inputs.nixos-hardware.nixosModules.dell-xps-13-9380
     ../../users/jsimonrichard
     ./bedtime.nix
-    ./rust.nix
   ];
 
-  # Custom zfs module config
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
-      bootDevices = [  "nvme-PC_SN730_NVMe_WDC_512GB_21355H804723" ];
-      immutable = false;
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+      bootDevices = [ "nvme-PC_SN730_NVMe_WDC_512GB_21355H804723" ];
+      immutable.enable = false;
       removableEfi = true;
-      kernelParams = [ ];
-      sshUnlock = {
-        # read sshUnlock.txt file.
-        enable = false;
-        authorizedKeys = [ ];
-      };
-    };
-    networking = {
-      # read changeHostName.txt file.
-      hostName = "elendil";
-      timeZone = "America/New_York";
-      hostId = "7d670aae";
+      luks.enable = false;
     };
   };
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.kernelParams = [ ];
+  networking.hostId = "7d670aae";
+  networking.hostName = "elendil";
+  time.timeZone = "America/New_York";
 
   # Desktop config
   my-config.desktop.kde = {
     enable = true;
   };
 
+  programs.rust.enable = true;
+
   home-manager.users.jsimonrichard = import ./home-manager/home.nix;
 
-# security.polkit = {
-#   enable = true;
-#   gnome.enable = false;
-# };
+  # security.polkit = {
+  #   enable = true;
+  #   gnome.enable = false;
+  # };
 
   fonts.packages = with pkgs; [
     meslo-lgs-nf
@@ -62,10 +55,6 @@
   # 1Password
   programs._1password.enable = true;
   programs._1password-gui.enable = true;
-
-  services.locate = {
-    enable = true;
-  };
 
   # Printing
   services.printing.enable = true;
@@ -97,11 +86,4 @@
   # VirtualBox
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "jsimonrichard" ];
-
-  # Garbage collecting
-  nix.gc = {
-    automatic = true;  # Enable the automatic garbage collector
-    dates = "weekly";   # When to run the garbage collector
-    options = "--delete-older-than 30d";    # Arguments to pass to nix-collect-garbage
-  };
 }
