@@ -65,11 +65,10 @@
   environment.systemPackages = with pkgs; [
     system-config-printer
     vulkan-tools
-    
     winetricks
     wineWowPackages.waylandFull
-
     jetbrains.rust-rover
+    bun
   ];
 
   # Finger print reader
