@@ -48,5 +48,6 @@
     kicad-small
     ollama
     figma-linux
+    eclipses.eclipse-java
   ];
 }
