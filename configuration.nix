@@ -94,6 +94,7 @@
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
+      kitty
       jq # other programs
       findutils
       btop
