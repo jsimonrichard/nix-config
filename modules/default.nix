@@ -2,8 +2,7 @@
   imports = [
     ./boot.nix
     ./fileSystems.nix
-    ./my-config/desktop/hyprland
-    ./my-config/desktop/kde
+    ./my-config
     ./polkit_gnome.nix
     ./tuigreet.nix
     ./rust.nix

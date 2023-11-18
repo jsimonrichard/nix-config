@@ -19,8 +19,9 @@
   time.timeZone = "America/New_York";
   
   # Desktop config
-  my-config.desktop.kde = {
-    enable = true;
+  my-config = {
+    desktop.kde.enable = true;
+    apps.enable = true;
   };
 
   programs.rust.enable = true;
