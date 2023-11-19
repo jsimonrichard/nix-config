@@ -50,4 +50,7 @@
   # VirtualBox
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "jsimonrichard" ];
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
 }
