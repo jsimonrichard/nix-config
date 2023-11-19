@@ -26,6 +26,10 @@
 
   programs.rust.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    prismlauncher
+  ];
+
   fonts.packages = with pkgs; [
     meslo-lgs-nf
     inter
