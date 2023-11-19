@@ -10,6 +10,8 @@ in {
   };
 
   config = mkIf config.my-config.apps.enable ((lists.foldr (a: b: a // b) {
+    environment.systemPackages = with pkgs; [
+    ];
   })
   [{
     home-manager.users.jsimonrichard = import ./home-manager/home.nix;
