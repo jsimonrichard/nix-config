@@ -29,7 +29,7 @@
 
   environment.systemPackages = with pkgs; [
     prismlauncher
-
+    distrobox
   ];
 
   fonts.packages = with pkgs; [
