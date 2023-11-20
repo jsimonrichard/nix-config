@@ -21,6 +21,7 @@
 
               # Global nixos configuration
               ./configuration.nix
+              ./cachix.nix
 
               # Host-specific config, if exist
               (if (builtins.pathExists
