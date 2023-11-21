@@ -70,7 +70,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./modules
-            ./installer.nix
+            ./installer
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             {
               system.configurationRevision = if (self ? rev) then

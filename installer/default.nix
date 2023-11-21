@@ -1,6 +1,10 @@
 # configuration in this file is shared by all hosts
 
 { pkgs, inputs, lib, config, ... }: {
+  imports = [
+    ./installer-script.nix
+  ];
+
 
   my-config.desktop.kde.enable = true;
 
