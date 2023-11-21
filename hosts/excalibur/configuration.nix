@@ -1,29 +1,36 @@
-{ pkgs, inputs, config, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     ../../users/jsimonrichard
+    ./nvidia.nix
   ];
 
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
-      bootDevices = [ "" ];
+      bootDevices = [ "nvme-Samsung_SSD_980_PRO_with_Heatsink_2TB_S6WRNS0W537613Z" ];
       immutable.enable = false;
       removableEfi = true;
-      luks.enable = true;
+      # luks.enable = true;
     };
   };
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelParams = [ ];
   networking.hostId = "0e363df6";
   networking.hostName = "excalibur";
   time.timeZone = "America/New_York";
   
   # Desktop config
-  my-config.desktop.kde = {
-    enable = true;
+  my-config = {
+    desktop.kde.enable = true;
+    apps.enable = true;
   };
 
   programs.rust.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    prismlauncher
+    distrobox
+  ];
 
   fonts.packages = with pkgs; [
     meslo-lgs-nf
@@ -44,19 +51,16 @@
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "jsimonrichard" ];
 
-  # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  # Bluetooth
+  hardware.bluetooth.enable = true;
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # Sound
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 }
