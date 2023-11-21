@@ -1,6 +1,9 @@
 # configuration in this file is shared by all hosts
 
 { pkgs, inputs, lib, config, ... }: {
+
+  my-config.desktop.kde.enable = true;
+
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
