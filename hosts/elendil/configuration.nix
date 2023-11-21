@@ -28,8 +28,6 @@
 
   programs.rust.enable = true;
 
-  home-manager.users.jsimonrichard = import ./home-manager/home.nix;
-
   # security.polkit = {
   #   enable = true;
   #   gnome.enable = false;
