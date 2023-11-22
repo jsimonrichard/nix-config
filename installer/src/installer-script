@@ -147,8 +147,8 @@ git clone https://github.com/jsimonrichard/nix-config "${MNT}"/etc/nixos
 
 # Git configuration
 echo "Configuring git..."
-read -p "Github username: " GITHUB_USERNAME
-read -p "Github email: " GITHUB_EMAIL
+read -p "Github Name: " GITHUB_USERNAME
+read -p "Github Email: " GITHUB_EMAIL
 git config --global user.name "${GITHUB_USERNAME}"
 git config --global user.email "${GITHUB_EMAIL}"
 
@@ -163,7 +163,7 @@ yes_no "Would you like install using the current configuration" || {
 
 read -p "Flake host: " FLAKE_HOST
 echo "Installing NixOS..."
-nixos-install \
+sudo nixos-install \
 --root "${MNT}" \
 --no-root-passwd \
 --flake "git+file://${MNT}/etc/nixos#${FLAKE_HOST}"
