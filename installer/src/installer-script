@@ -33,6 +33,11 @@ partition_disk () {
  udevadm settle
 }
 
+if [[ $(id -u) -ne 0 ]]; then
+    echo "This script must be run as root. Exiting..."
+    exit 1
+fi
+
 
 # General flow taken from https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS.html
 
@@ -146,24 +151,31 @@ mkdir -p "${MNT}"/etc
 git clone https://github.com/jsimonrichard/nix-config "${MNT}"/etc/nixos
 
 # Git configuration
-echo "Configuring git..."
-read -p "Github Name: " GITHUB_USERNAME
-read -p "Github Email: " GITHUB_EMAIL
-git config --global user.name "${GITHUB_USERNAME}"
-git config --global user.email "${GITHUB_EMAIL}"
 
-yes_no "Would you like install using the current configuration" || {
+yes_no "Would you like install the current configuration now?" || {
   echo "Run this command when you're ready:"
   echo "nixos-install \
 --root "${MNT}" \
 --no-root-passwd \
 --flake 'git+file://${MNT}/etc/nixos#exampleHost'"
+  echo "Configuring git..."
+  read -p "Github Name: " GITHUB_USERNAME
+  read -p "Github Email: " GITHUB_EMAIL
+  git config --global user.name "${GITHUB_USERNAME}"
+  git config --global user.email "${GITHUB_EMAIL}"
   exit 0
 }
 
-read -p "Flake host: " FLAKE_HOST
+read -p "Flake host to install: " FLAKE_HOST
 echo "Installing NixOS..."
-sudo nixos-install \
+nixos-install \
 --root "${MNT}" \
 --no-root-passwd \
 --flake "git+file://${MNT}/etc/nixos#${FLAKE_HOST}"
+
+echo "Unmounting and exporting pools..."
+umount -Rl "${MNT}"
+zpool export -a
+
+echo
+echo "Done! Make sure to reboot into your new system."
