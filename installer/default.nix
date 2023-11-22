@@ -5,9 +5,16 @@
     ./installer-script.nix
   ];
 
+  # Desktop environment
+  services.xserver = {
+    enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
+  };
+  programs.dconf.enable = true;
+  programs.kdeconnect.enable = true;
 
-  my-config.desktop.kde.enable = true;
-
+  # Terminal things
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
@@ -75,10 +82,8 @@
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
-      jq # other programs
       findutils
       btop
-      poetry
     ;
   };
 

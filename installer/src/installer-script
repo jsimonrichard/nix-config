@@ -1,2 +1,169 @@
 #!/bin/sh
-echo "Hello World"
+
+yes_no() {
+  while true; do
+    read -p "$1 [y/n] " yn
+    case $yn in
+      [Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
+SWAPSIZE=4
+RESERVE=1
+
+partition_disk () {
+ local disk="${1}"
+ blkdiscard -f "${disk}" || true
+
+ parted --script --align=optimal  "${disk}" -- \
+ mklabel gpt \
+ mkpart EFI 2MiB 1GiB \
+ mkpart bpool 1GiB 5GiB \
+ mkpart rpool 5GiB -$((SWAPSIZE + RESERVE))GiB \
+ mkpart swap  -$((SWAPSIZE + RESERVE))GiB -"${RESERVE}"GiB \
+ mkpart BIOS 1MiB 2MiB \
+ set 1 esp on \
+ set 5 bios_grub on \
+ set 5 legacy_boot on
+
+ partprobe "${disk}"
+ udevadm settle
+}
+
+
+# General flow taken from https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS.html
+
+echo "#############################"
+echo "### NixOS + ZFS Installer ###"
+echo "#############################"
+echo 
+
+echo "Select the disk(s) to install NixOS + ZFS on:"
+
+select DISK in $(find /dev/disk/by-id -type l -not -name "*part*" -printf "%f\n" | sort) Done; do
+  case "$DISK" in
+    Done*)
+      break;
+      ;;
+    *)
+      echo "Adding $DISK..."
+      DISKS="$DISKS $DISK"
+      ;;
+  esac
+done
+
+echo "Selected disks: $DISKS"
+
+yes_no "Is this correct?" || exit 1
+
+
+MNT=$(mktemp -d)
+
+for i in ${DISKS}; do
+   partition_disk "${i}"
+done
+
+MIRROR=$( (($(echo $DISKS | wc -w) > 1)) && echo "mirror" || echo "")
+
+# Create pools
+echo "Creating pools..."
+zpool create -o compatibility=legacy  \
+    -o ashift=12 \
+    -o autotrim=on \
+    -O acltype=posixacl \
+    -O canmount=off \
+    -O devices=off \
+    -O normalization=formD \
+    -O relatime=on \
+    -O xattr=sa \
+    -O mountpoint=/boot \
+    -R "${MNT}" \
+    bpool \
+  $MIRROR \
+    $(for i in ${DISKS}; do
+       printf '%s ' "${i}-part2";
+      done)
+zpool create \
+    -o ashift=12 \
+    -o autotrim=on \
+    -R "${MNT}" \
+    -O acltype=posixacl \
+    -O canmount=off \
+    -O compression=zstd \
+    -O dnodesize=auto \
+    -O normalization=formD \
+    -O relatime=on \
+    -O xattr=sa \
+    -O mountpoint=/ \
+    rpool \
+    $MIRROR \
+   $(for i in ${DISKS}; do
+      printf '%s ' "${i}-part3";
+     done)
+
+# Create root system container
+echo "Creating root system container..."
+zfs create \
+ -o canmount=off \
+ -o mountpoint=none \
+rpool/nixos
+
+# Create system datasets
+echo "Creating system datasets..."
+zfs create -o mountpoint=legacy     rpool/nixos/root
+mount -t zfs rpool/nixos/root "${MNT}"/
+zfs create -o mountpoint=legacy rpool/nixos/home
+mkdir "${MNT}"/home
+mount -t zfs rpool/nixos/home "${MNT}"/home
+zfs create -o mountpoint=none   rpool/nixos/var
+zfs create -o mountpoint=legacy rpool/nixos/var/lib
+zfs create -o mountpoint=legacy rpool/nixos/var/log
+zfs create -o mountpoint=none bpool/nixos
+zfs create -o mountpoint=legacy bpool/nixos/root
+mkdir "${MNT}"/boot
+mount -t zfs bpool/nixos/root "${MNT}"/boot
+mkdir -p "${MNT}"/var/log
+mkdir -p "${MNT}"/var/lib
+mount -t zfs rpool/nixos/var/lib "${MNT}"/var/lib
+mount -t zfs rpool/nixos/var/log "${MNT}"/var/log
+zfs create -o mountpoint=legacy rpool/nixos/empty
+zfs snapshot rpool/nixos/empty@start
+
+# Format and mount ESP
+echo "Formatting and mounting ESP..."
+for i in ${DISKS}; do
+ mkfs.vfat -n EFI "${i}"-part1
+ mkdir -p "${MNT}"/boot/efis/"${i##*/}"-part1
+ mount -t vfat -o iocharset=iso8859-1 "${i}"-part1 "${MNT}"/boot/efis/"${i##*/}"-part1
+done
+
+# Clone nixos configuration
+echo "Cloning nixos configuration from github.com/jsimonrichard/nix-config..."
+mkdir -p "${MNT}"/etc
+git clone https://github.com/jsimonrichard/nix-config "${MNT}"/etc/nixos
+
+# Git configuration
+echo "Configuring git..."
+read -p "Github username: " GITHUB_USERNAME
+read -p "Github email: " GITHUB_EMAIL
+git config --global user.name "${GITHUB_USERNAME}"
+git config --global user.email "${GITHUB_EMAIL}"
+
+yes_no "Would you like install using the current configuration" || {
+  echo "Run this command when you're ready:"
+  echo "nixos-install \
+--root "${MNT}" \
+--no-root-passwd \
+--flake 'git+file://${MNT}/etc/nixos#exampleHost'"
+  exit 0
+}
+
+read -p "Flake host: " FLAKE_HOST
+echo "Installing NixOS..."
+nixos-install \
+--root "${MNT}" \
+--no-root-passwd \
+--flake "git+file://${MNT}/etc/nixos#${FLAKE_HOST}"

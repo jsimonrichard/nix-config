@@ -69,7 +69,6 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./modules
             ./installer
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             {
