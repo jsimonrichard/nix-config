@@ -13,6 +13,7 @@ in {
     environment.systemPackages = with pkgs; [
       cachix
       popsicle
+      element-desktop
     ];
   })
   [{
