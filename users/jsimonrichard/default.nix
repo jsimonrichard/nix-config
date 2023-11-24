@@ -37,6 +37,16 @@
         host = "gramr.jsimonrichard.com";
         user = "jsimonrichard";
       };
+      "Excalibur" = {
+        host = "excalibur.jsimonrichard.com";
+        user = "jsimonrichard";
+        port = 33805;
+      };
+      "excalibur" = {
+        host = "excalibur";
+        user = "jsimonrichard";
+        port = 33805;
+      };
       "Grail" = {
         host = "grail.eecs.csuohio.edu";
         user = "jarichar";
