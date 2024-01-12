@@ -104,6 +104,7 @@
       findutils
       btop
       poetry
+      nix-tree
     ;
   };
 
