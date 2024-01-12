@@ -49,6 +49,5 @@
     ollama
     figma-linux
     eclipses.eclipse-java
-    popsicle
   ];
 }
