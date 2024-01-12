@@ -30,17 +30,14 @@
     # Dev things
     postgresql
     typeshare
-
     wl-clipboard
     musescore
     evince
     inkscape
-
     texlive.combined.scheme-full
     gimp
     blender
     onedrive
-
     godot_4
     jetbrains.rust-rover
     zig
@@ -49,5 +46,6 @@
     ollama
     figma-linux
     eclipses.eclipse-java
+    vlc
   ];
 }
